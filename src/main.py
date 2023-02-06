@@ -59,8 +59,7 @@ for case in files_metadata["data"]["hits"]:
    
     # we can process the files here, by selecting only the columns we need
     # for now we will just save them to disk
-    # save the file
-    
-    file = open(case["file_name"], "w")
-    file.write(response.text)
-    file.close()
+    # save the file with the original file name
+    # we may change it to save the file with the case UUID
+    with open("data/"+case["file_name"], "w") as file:
+        file.write(response.text)
