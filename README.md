@@ -11,6 +11,6 @@
 
 3 - Run `src/main.py`.
 
-The script will link files and case ids and then filter the entries in the manifest using the provided case ids. Then it downloads all the selected files from GDC and stores in `data/`.
+The script will link files and case ids and then filter the entries in the manifest using the provided case ids. Then it downloads all selected files from GDC and stores in `data/`.
 
 
