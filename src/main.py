@@ -29,8 +29,7 @@ supertreat = pd.read_csv('data/supertreat_cases.csv')
 # filter file_dict by supertreat cases
 file_dict = {k: v for k, v in file_dict.items() if k in supertreat["case_uuid"].values}
 
-# I need to download the file info for each case and link the file UUID to the case UUID
-
+# GDC API endpoint for files
 files_endpt = "https://api.gdc.cancer.gov/files"
 
 # filter by file_name using all file names from the manifest file
