@@ -10,7 +10,7 @@ import requests
 import json
 import io
 
-manifest_file = 'data/manifest.json'
+manifest_file = '../data/manifest.json'
 
 # open manifest file with file names and UUIDs
 with open(manifest_file) as file:
@@ -25,7 +25,7 @@ for file in manifest:
     file_dict[file["cases"][0]["case_id"]] = file['file_name']
 
 # load TGCA harmonized clinical data
-clin = pd.read_csv("data/TCGA_harmonized.txt", sep=";")
+clin = pd.read_csv("../data/TCGA_harmonized.txt", sep=";")
 
 supertreat = pd.DataFrame(data={"case_uuid": clin["Patient_ID"]})
 
@@ -87,7 +87,7 @@ for n, case in enumerate(files_metadata["data"]["hits"]):
     df = pd.read_csv(io.StringIO(response.text), sep="\t", comment="#") 
 
     if not set(df["gene_id"].values).issubset(gene_expression.columns) and not gene_expression.empty:
-        print("Warning: New gene ids found, NaN values will be added to the dataframe for previous cases.")
+        print("Warning: New gene id found, NaN values will be added to the dataframe for previous cases.")
 
     data = dict(zip(df["gene_id"].values, df[type_of_counts].values))
     gene_expression_temp = pd.DataFrame(data = data, index = [inv_file_dict[case["file_name"]]] )
@@ -107,7 +107,7 @@ for n, case in enumerate(files_metadata["data"]["hits"]):
 
 gene_expression.index.name = "Patient_ID"
 
-gene_expression.to_csv("data/{}.csv".format(type_of_counts), sep=";")
+gene_expression.to_csv("../data/{}.csv".format(type_of_counts), sep=";")
 
 
-gene_mapping.to_csv("data/gene_mapping.csv", sep=";")
+gene_mapping.to_csv("../data/gene_mapping.csv", sep=";")
